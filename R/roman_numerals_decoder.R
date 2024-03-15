@@ -32,6 +32,10 @@ romtbl <- read_tsv("base_num 	Thousands 	Hundreds 	Tens 	Ones
 #                          levels = cw.data$rn[order(cw.data$n)]) %>%
 #   as.ordered()
 
+cw.base10 <- data.frame(variable = c("Thousands", "Hundreds", "Tens", "Ones"), 
+                        base10   = c(1000, 100, 10, 1))
+
+
 # working----
 romtbl2 <- romtbl %>%
   as.data.table() %>%
