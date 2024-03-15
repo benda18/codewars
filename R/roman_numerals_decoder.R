@@ -77,7 +77,7 @@ romtbl3 <- left_join(romtbl2,
 
 
 # test----
-some.rn <- "MDCLXVI"  %>%
+some.rn <- "MMVIII"  %>%
   toupper()
 
 
@@ -103,8 +103,14 @@ for(i in 1:nrow(romtbl3)){
         
 }
 
-out.b10n
+out.b10n$base_val <- nchar(out.b10n$numval) %>% as.character()
 
+out.b10n2 <- slice_max(group_by(out.b10n, base_val), 
+          order_by = numval, 
+          n = 1)
+
+out.number <- sum(out.b10n2$numval)
+out.number
 
 # Solution----
 
