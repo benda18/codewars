@@ -14,7 +14,7 @@ rm(list=ls());cat('\f');gc()
 
 
 # Reference----
-romtbl <- read_tsv("base_num 	Thousands 	Hundreds 	Tens 	Units
+romtbl <- read_tsv("base_num 	Thousands 	Hundreds 	Tens 	Ones
 1 	M 	C 	X 	I
 2 	MM 	CC 	XX 	II
 3 	MMM 	CCC 	XXX 	III
@@ -33,9 +33,22 @@ cw.data$rn_ord <- factor(cw.data$rn,
   as.ordered()
 
 # working----
-romtbl
+romtbl2 <- romtbl %>%
+  as.data.table() %>%
+  melt(., 
+       id.vars = c("base_num")) %>%
+  as.data.frame() %>%
+  as_tibble()
 
+romtbl2$var_o <- factor(romtbl2$variable, 
+                        levels = rev(c("Thousands", "Hundreds", "Tens", "Ones"))) %>%
+  as.ordered()
 
+romtbl2 <- romtbl2[!is.na(romtbl2$value),]
+
+romtbl2 <- romtbl2[order(romtbl2$var_o, 
+              romtbl2$base_num, 
+              decreasing = T),]
 
 # Solution----
 
