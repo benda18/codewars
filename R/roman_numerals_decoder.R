@@ -63,6 +63,29 @@ romtbl2 <- romtbl2[order(romtbl2$var_o,
 romtbl2$var_o
 romtbl2$rn_o
 
+romtbl3 <- left_join(romtbl2, 
+          cw.base10) %>%
+  mutate(., 
+         numval = base_num * base10) %>%
+  .[,c("rn_o", "numval")]
+
+
+# test----
+some.rn <- "xix"  %>%
+  toupper()
+
+for(i in 1:nrow(romtbl3)){
+  
+  if(grepl(pattern = romtbl3[i,]$rn_o, 
+        x = some.rn)){
+    #stop("it works")
+    print(i)
+    print(as.character(romtbl3[i,]$rn_o))
+  }
+          
+        
+}
+
 # Solution----
 
 solution <- function(roman){
