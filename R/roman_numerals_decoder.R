@@ -78,8 +78,8 @@ romtbl3 <- left_join(romtbl2,
 
 
 # # test----
-# roman <- "MMVIII"  %>%
-#   toupper()
+roman <- "iv"  %>%
+  toupper()
 
 
 # cw_base10.2 <- romtbl2 %>%
@@ -92,8 +92,8 @@ for(i in 1:nrow(romtbl3)){
   if(grepl(pattern = romtbl3[i,]$rn_o, 
         x = roman)){
     #stop("it works")
-    print(i)
-    print(as.character(romtbl3[i,]$rn_o))
+    # print(i)
+    # print(as.character(romtbl3[i,]$rn_o))
     
     out.b10n <- rbind(out.b10n, 
                       data.frame(rn_o   = romtbl3[i,]$rn_o, 
@@ -194,8 +194,8 @@ solution <- function(roman){
     if(grepl(pattern = romtbl3[i,]$rn_o, 
              x = roman)){
       #stop("it works")
-      print(i)
-      print(as.character(romtbl3[i,]$rn_o))
+      #print(i)
+      #print(as.character(romtbl3[i,]$rn_o))
       
       out.b10n <- rbind(out.b10n, 
                         data.frame(rn_o   = romtbl3[i,]$rn_o, 
