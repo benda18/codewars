@@ -25,12 +25,12 @@ romtbl <- read_tsv("base_num 	Thousands 	Hundreds 	Tens 	Ones
 8 		DCCC 	LXXX 	VIII
 9 		CM 	XC 	IX")
 
-cw.data <- data.frame(rn = c("i", "v", "x", "l", "c", "d", "m"), 
-                      n = c(1, 5, 10, 50, 100, 500, 1000))
-
-cw.data$rn_ord <- factor(cw.data$rn, 
-                         levels = cw.data$rn[order(cw.data$n)]) %>%
-  as.ordered()
+# cw.data <- data.frame(rn = c("i", "v", "x", "l", "c", "d", "m"), 
+#                       n = c(1, 5, 10, 50, 100, 500, 1000))
+# 
+# cw.data$rn_ord <- factor(cw.data$rn, 
+#                          levels = cw.data$rn[order(cw.data$n)]) %>%
+#   as.ordered()
 
 # working----
 romtbl2 <- romtbl %>%
@@ -46,9 +46,18 @@ romtbl2$var_o <- factor(romtbl2$variable,
 
 romtbl2 <- romtbl2[!is.na(romtbl2$value),]
 
+romtbl2$rn_o <- factor(romtbl2$value, 
+                       levels = rev(unique(romtbl2$value[order(romtbl2$var_o, 
+                                                           romtbl2$base_num, 
+                                                           decreasing = T)]))) %>%
+  as.ordered()
+
+
 romtbl2 <- romtbl2[order(romtbl2$var_o, 
-              romtbl2$base_num, 
-              decreasing = T),]
+                         romtbl2$base_num, 
+                         decreasing = T),]
+romtbl2$var_o
+romtbl2$rn_o
 
 # Solution----
 
