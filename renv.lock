@@ -86,6 +86,17 @@
       ],
       "Hash": "e8a1e41acf02548751f45c718d55aa6a"
     },
+    "data.table": {
+      "Package": "data.table",
+      "Version": "1.15.2",
+      "Source": "Repository",
+      "Repository": "RSPM",
+      "Requirements": [
+        "R",
+        "methods"
+      ],
+      "Hash": "536dfe4ac4093b5d115caed7a1a7223b"
+    },
     "dplyr": {
       "Package": "dplyr",
       "Version": "1.1.4",

@@ -3,6 +3,7 @@
 library(renv)
 library(dplyr)
 library(readr)
+library(data.table)
 
 renv::snapshot()
 
@@ -32,7 +33,7 @@ cw.data$rn_ord <- factor(cw.data$rn,
   as.ordered()
 
 # working----
-
+romtbl
 
 
 
