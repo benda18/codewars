@@ -78,7 +78,7 @@ romtbl3 <- left_join(romtbl2,
 
 
 # # test----
-roman <- "iv"  %>%
+roman <- "XXI"  %>%
   toupper()
 
 
@@ -111,7 +111,7 @@ out.b10n2 <- slice_max(group_by(out.b10n, base_val),
           n = 1)
 
 out.number <- sum(out.b10n2$numval)
-#return(out.number)
+(out.number)
 
 # Solution----
 
