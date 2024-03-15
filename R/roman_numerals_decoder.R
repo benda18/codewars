@@ -50,6 +50,9 @@ romtbl2$var_o <- factor(romtbl2$variable,
 
 romtbl2 <- romtbl2[!is.na(romtbl2$value),]
 
+romtbl2[romtbl2$variable == "Ones",]$value <- paste(romtbl2[romtbl2$variable == "Ones",]$value, 
+                                                    "$", sep = "")
+
 romtbl2$rn_o <- factor(romtbl2$value, 
                        levels = rev(unique(romtbl2$value[order(romtbl2$var_o, 
                                                            romtbl2$base_num, 
@@ -63,17 +66,26 @@ romtbl2 <- romtbl2[order(romtbl2$var_o,
 romtbl2$var_o
 romtbl2$rn_o
 
+
+
 romtbl3 <- left_join(romtbl2, 
-          cw.base10) %>%
+                     cw.base10) %>%
   mutate(., 
          numval = base_num * base10) %>%
   .[,c("rn_o", "numval")]
 
 
+
 # test----
-some.rn <- "xix"  %>%
+some.rn <- "MDCLXVI"  %>%
   toupper()
 
+
+# cw_base10.2 <- romtbl2 %>%
+#   group_by(base_num, variable, value) %>%
+#   summarise()
+
+out.b10n <- NULL
 for(i in 1:nrow(romtbl3)){
   
   if(grepl(pattern = romtbl3[i,]$rn_o, 
@@ -81,10 +93,18 @@ for(i in 1:nrow(romtbl3)){
     #stop("it works")
     print(i)
     print(as.character(romtbl3[i,]$rn_o))
+    
+    out.b10n <- rbind(out.b10n, 
+                      data.frame(rn_o   = romtbl3[i,]$rn_o, 
+                                 numval = romtbl3[i,]$numval))
+    
   }
           
         
 }
+
+out.b10n
+
 
 # Solution----
 
