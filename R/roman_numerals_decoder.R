@@ -24,48 +24,17 @@ romtbl <- read_tsv("base_num 	Thousands 	Hundreds 	Tens 	Units
 8 		DCCC 	LXXX 	VIII
 9 		CM 	XC 	IX")
 
-
-# working----
-set.seed(12345)
-some.numbers <- data.frame(num = sample(1:199, size = 15, replace = F), 
-                           rn  = NA) %>%
-  .[order(.$num,decreasing = F),]
-some.numbers
-
-toupper(c("i", "x", "xxxviii", 
-          "li", "lviii", "lxxv", 
-          "lxxxvi", "xciii", ))
-
 cw.data <- data.frame(rn = c("i", "v", "x", "l", "c", "d", "m"), 
-           n = c(1, 5, 10, 50, 100, 500, 1000))
+                      n = c(1, 5, 10, 50, 100, 500, 1000))
 
 cw.data$rn_ord <- factor(cw.data$rn, 
-                     levels = cw.data$rn[order(cw.data$n)]) %>%
+                         levels = cw.data$rn[order(cw.data$n)]) %>%
   as.ordered()
 
-some.rn <- "xix"
+# working----
 
-some.rn2 <- strsplit(some.rn, "") %>%
-  unlist()
 
-out.hold <- NULL
-for(i in length(some.rn2):1){
-  # get roman numeral
-  temp.rn <- some.rn2[i]
-  
-  if(i == length(some.rn2)){
-    # do something
-    out.hold <- cw.data$n[cw.data$rn_ord == temp.rn]
-  }else{
-    # do something else
-    if(temp.rn < some.rn2[i+1]){
-      # get sign of previous 
-      some.rn2[i+1] / abs(some.rn2[i+1])
-      
-    }
-  }
-  
-}
+
 
 # Solution----
 
