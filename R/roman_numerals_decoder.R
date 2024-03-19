@@ -208,6 +208,7 @@ solution <- function(roman){
   
   out.b10n$base_val <- nchar(out.b10n$numval) %>% as.character()
   
+  # issue: code breaks here
   out.b10n2 <- slice_max(group_by(out.b10n, base_val), 
                          order_by = numval, 
                          n = 1)
@@ -218,6 +219,17 @@ solution <- function(roman){
 
 
 
+# issue:  for the following test of roman numerals 1:10, 3 are broken: 
+rn_1to10 <- toupper(c("i", "ii", "iii", "iv", "v",
+                      "vi", "vii", "vii", "ix", "x")) %>%
+  factor()
+
+out_1to10 <- (lapply(rn_1to10,solution))
+
+which(c(1:10) != out_1to10)
+# /issue
+
+
 # Sample Tests----
 test_that("Sample Tests", {
   expect_equal(solution("XXI"), 21)
@@ -226,3 +238,5 @@ test_that("Sample Tests", {
   expect_equal(solution('MMVIII'), 2008)
   expect_equal(solution('MDCLXVI'), 1666)
 })
+
+
